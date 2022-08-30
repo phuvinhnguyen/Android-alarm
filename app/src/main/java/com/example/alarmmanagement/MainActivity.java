@@ -120,15 +120,12 @@ import java.util.Calendar;
             }
 
 
-            pendingIntent = PendingIntent.getBroadcast(this,0,intent,0);
+            pendingIntent = PendingIntent.getBroadcast(this,level,intent,0);
 
             alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),
                     AlarmManager.INTERVAL_DAY,pendingIntent);
 
             Toast.makeText(this, "Alarm set Successfully", Toast.LENGTH_SHORT).show();
-
-
-
         }
 
         private void showTimePicker() {

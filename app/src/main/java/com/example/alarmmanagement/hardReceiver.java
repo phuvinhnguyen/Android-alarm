@@ -1,15 +1,9 @@
 package com.example.alarmmanagement;
 
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.media.AudioAttributes;
-import android.net.Uri;
-import android.os.Build;
 
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
@@ -22,7 +16,7 @@ public class hardReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         Intent i = new Intent(context, HardWakeup.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        PendingIntent pendingIntent = PendingIntent.getActivity(context,0,i,0);
+        PendingIntent pendingIntent = PendingIntent.getActivity(context,3,i,0);
 
         //start sound service
         context.startService(new Intent(context.getApplicationContext(), SoundService.class));
@@ -33,6 +27,7 @@ public class hardReceiver extends BroadcastReceiver {
                 .setContentTitle("Alarm")
                 .setContentText("Wake up !!!")
                 .setAutoCancel(false)
+                .setSound(null)
                 .setCategory(NotificationCompat.CATEGORY_ALARM)
                 .setDefaults(NotificationCompat.DEFAULT_ALL)
                 .setPriority(NotificationCompat.PRIORITY_HIGH)

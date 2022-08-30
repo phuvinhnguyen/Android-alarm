@@ -10,7 +10,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class EasyWakeup extends AppCompatActivity {
     private Button turnOf;
-    //private MediaPlayer mediaPlayer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

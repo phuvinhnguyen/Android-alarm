@@ -34,6 +34,7 @@ public class HardWakeup extends AppCompatActivity implements ImageAnalysis.Analy
     private ImageAnalysis imageAnalysis;
     private int imageSize = 48;
     private TextView textView;
+    private boolean end = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -138,19 +139,21 @@ public class HardWakeup extends AppCompatActivity implements ImageAnalysis.Analy
                     "Neutral",
                     "Sad",
                     "Surprised"};
-            textView.setText(classes[maxPos]+":"+maxConfidence);
-            // Releases model resources if no longer used.
-            model.close();
+            textView.setText(classes[maxPos]+":"+remain);
 
-            if (maxPos == 0){
+            if (classes[maxPos]=="Neutral"){
                 remain++;
-                if (remain == 5){
-                    endAction();
-                }
             }
             else{
                 remain=0;
             }
+
+            if (remain >= 1){
+                endAction();
+            }
+
+            // Releases model resources if no longer used.
+            model.close();
         } catch (IOException e) {
             // TODO Handle the exception
         }
@@ -162,6 +165,9 @@ public class HardWakeup extends AppCompatActivity implements ImageAnalysis.Analy
 
     private void endAction(){
         //todo: delete all action
-        stopService(new Intent(getApplicationContext(), SoundService.class));
+        if (end==false) {
+            end = true;
+            stopService(new Intent(getApplicationContext(), SoundService.class));
+        }
     }
 }
