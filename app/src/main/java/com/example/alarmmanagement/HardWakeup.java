@@ -141,14 +141,14 @@ public class HardWakeup extends AppCompatActivity implements ImageAnalysis.Analy
                     "Surprised"};
             textView.setText(classes[maxPos]+":"+remain);
 
-            if (classes[maxPos]=="Neutral"){
+            if (classes[maxPos]=="Angry"){
                 remain++;
             }
             else{
                 remain=0;
             }
 
-            if (remain >= 1){
+            if (remain >= 3){
                 endAction();
             }
 
